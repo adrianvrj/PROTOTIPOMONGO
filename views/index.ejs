@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tareas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Listado de Tareas</h1>
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <%= task.title %> - <%= task.description %> - <%= task.done ? 'Realizada' : 'Pendiente' %>
+        <a href="/show/<%= task._id %>">Ver</a> |
+        <a href="/edit/<%= task._id %>">Editar</a> |
+        <a href="/delete/<%= task._id %>">Eliminar</a>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/new">Agregar tarea</a><br>
+  <h3>En el shell de mongo db esta consulta se vería de la siguiente manera:</h3>
+  <div id="codigo">
+    <p>db.getCollection("tasks").find({});</p>
+  </div>
+</body>
+</html>

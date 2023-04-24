@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar tarea</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Agregar tarea</h1>
+  <form action="/new" method="POST">
+    <label for="title">Título:</label><br>
+    <input onchange="valChanged()" type="text" id="title" name="title"><br>
+    <label for="description">Descripción:</label><br>
+    <textarea onchange="valChanged()" id="description" name="description"></textarea><br>
+    <label for="done">Realizada:</label>
+    <input onchange="valChanged()" type="checkbox" id="done" name="done" value="true"><br>
+    <input type="submit" value="Agregar">
+  </form>
+  <a href="/">Cancelar</a>
+  <h3>En el shell de mongo db esta consulta se vería de la siguiente manera:</h3>
+  <div id="codigo">
+    <p id="consulta">db.tasks.insert({title: '', description: '', done: });</p>
+  </div>
+</body>
+<script>
+  function valChanged(){
+    document.getElementById('codigo').textContent = 'db.tasks.insert({ title: ' + 
+                                                      document.getElementById('title').value + 
+                                                      ', description: ' + 
+                                                      document.getElementById('description').value + 
+                                                      ', done: ' +
+                                                      document.getElementById('done').checked +
+                                                      '}); '
+  }
+</script>
+</html>
